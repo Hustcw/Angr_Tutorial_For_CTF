@@ -1,7 +1,7 @@
 import angr,sys
 
 def main():
-    proj = angr.Project('02_angr_find_condition')
+    proj = angr.Project('../problems/02_angr_find_condition')
     init_state = proj.factory.entry_state()
     simulation = proj.factory.simgr(init_state)
 

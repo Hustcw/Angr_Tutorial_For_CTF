@@ -1,7 +1,7 @@
 import angr
 
 # create project
-proj = angr.Project('01_angr_avoid')
+proj = angr.Project('../problems/01_angr_avoid')
 # initial_state at the entry point of the binary
 init_state = proj.factory.entry_state()
 # create simulation

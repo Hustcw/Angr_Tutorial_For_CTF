@@ -2,7 +2,7 @@ import angr
 
 def main():
     # create project
-    proj = angr.Project('00_angr_find')
+    proj = angr.Project('../problems/00_angr_find')
     # entry point
     init_state = proj.factory.entry_state()
     # create simulation
@@ -20,4 +20,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
 

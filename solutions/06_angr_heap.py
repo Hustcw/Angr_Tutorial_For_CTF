@@ -2,7 +2,7 @@ import angr
 import sys 
 
 def main():
-    proj = angr.Project('06_angr_symbolic_dynamic_memory')
+    proj = angr.Project('../problems/06_angr_symbolic_dynamic_memory')
     init_state = proj.factory.blank_state(addr=0x08048696)
 
     fake_heap_addr = 0x602000

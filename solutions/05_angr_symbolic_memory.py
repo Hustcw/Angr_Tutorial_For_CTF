@@ -8,7 +8,7 @@ def fail(state):
     return b'Try again.' in state.posix.dumps(sys.stdout.fileno())
 
 def main():
-    proj = angr.Project('05_angr_symbolic_memory')
+    proj = angr.Project('../problems/05_angr_symbolic_memory')
 
     # define start addr
     start_addr = 0x080485FE

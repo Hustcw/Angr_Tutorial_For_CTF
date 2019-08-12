@@ -4,9 +4,9 @@ import sys
 
 def main():
     # create project
-    proj = angr.Project('../problems/08_angr_constraints')
+    proj = angr.Project('../problems/09_angr_hooks')
     # entry point
-    init_state = proj.factory.blank_state(addr=0x08048622)
+    init_state = proj.factory.entry_state()
 
     password = init_state.solver.BVS('password', 16 * 8)
     init_state.memory.store(0x0804a050, password)

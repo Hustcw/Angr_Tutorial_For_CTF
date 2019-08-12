@@ -3,7 +3,7 @@ import claripy
 import sys
 
 def main():
-    project = angr.Project('03_angr_symbolic_registers')
+    project = angr.Project('../problems/03_angr_symbolic_registers')
 
     # start address
     start_address = 0x08048980

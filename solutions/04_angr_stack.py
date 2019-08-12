@@ -9,7 +9,7 @@ def should_abort(state):
     return b'Try again.' in state.posix.dumps(sys.stdout.fileno())
 
 def main():
-    proj = angr.Project('04_angr_symbolic_stack')
+    proj = angr.Project('../problems/04_angr_symbolic_stack')
 
     # this start address can be calculate according to 0x18+0x4-0x10+0x4 == 0x8+0x4+0x4 (esp - 8 - 4 - 4)
     start_addr = 0x08048697
