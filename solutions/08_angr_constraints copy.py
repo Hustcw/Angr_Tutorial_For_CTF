@@ -1,30 +1,30 @@
 # we have to avoid loop with conditional branch, so maybe we have to do some works just like this task
 import angr
-import claripy
 import sys
+import claripy
 
 def main():
     # create project
-    proj = angr.Project('../problems/09_angr_hooks')
+    proj = angr.Project('../problems/08_angr_constraints')
     # entry point
+    # init_state = proj.factory.blank_state(addr=0x08048622)
     init_state = proj.factory.entry_state()
 
-    checkpoints_addr = 0x080486B3
-    skip_len = 5
-
-    @proj.hook(checkpoints_addr, length=skip_len)
-    def skip_check_equal(state):
-        buffer_addr = 0x0804A054
-        load_buffer_symbol = state.memory.load(buffer_addr, 16)
-        check_str = 'XYMKBKUHNIQYNQXE'
-        state.regs.eax = claripy.If(
-            load_buffer_symbol == check_str, 
-            claripy.BVV(1, 32), 
-            claripy.BVV(0, 32)
-        )
-    
     # create simulation
+
+    @proj.hook(0x08048673, length=5)
+    def skip_check(state):
+        get_buff = state.memory.load(0x0804A050, 16)
+        state.regs.eax = state.solver.If(
+            get_buff == 'AUPDNNPROEZRJWKB',
+            state.solver.BVV(1, 32),  
+            state.solver.BVV(0, 32) 
+        )
+    # start explore
+
     simulation = proj.factory.simgr(init_state)
+
+
     simulation.explore(find=success, avoid=fail)
 
     if simulation.found:
@@ -33,7 +33,6 @@ def main():
         print('flag: ', flag)
     else:
         print('no solution')
-    
 
 def success(state):
     return b'Good Job.' in state.posix.dumps(sys.stdout.fileno())
