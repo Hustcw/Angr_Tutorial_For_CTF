@@ -28,6 +28,12 @@ def main():
     check_symbol = 'check_equals_ORSDDWXHZURJRBDH'
     proj.hook_symbol(check_symbol, ReplaceEqual())
 
+    def success(state):
+        return b'Good Job.' in state.posix.dumps(sys.stdout.fileno())
+
+    def fail(state):
+        return b'Try again.' in state.posix.dumps(sys.stdout.fileno())
+
     # create simulation
     simulation = proj.factory.simgr(init_state)
     simulation.explore(find=success, avoid=fail)
@@ -39,13 +45,6 @@ def main():
     else:
         print('no solution')
     
-
-def success(state):
-    return b'Good Job.' in state.posix.dumps(sys.stdout.fileno())
-
-def fail(state):
-    return b'Try again.' in state.posix.dumps(sys.stdout.fileno())
-
 if __name__ == '__main__':
     main()
     
