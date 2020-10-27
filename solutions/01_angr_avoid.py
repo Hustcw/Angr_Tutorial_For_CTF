@@ -7,7 +7,7 @@ init_state = proj.factory.entry_state()
 # create simulation
 simulation = proj.factory.simgr(init_state)
 
-print_good = 0x080485b5
+print_good = 0x080485e5
 avoid_addr = 0x080485A8
 
 simulation.explore(find=print_good, avoid=avoid_addr)
