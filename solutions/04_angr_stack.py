@@ -25,8 +25,8 @@ def main():
     # because the password2 locate at ebp-0x8 (ebp -> esp : high -> low), ebp-0x9, ebp-0xa, ebp-0xb
     # the same to password1
 
-    init_state.stack_push(password2)
     init_state.stack_push(password1)
+    init_state.stack_push(password2)
 
     simulation = proj.factory.simgr(init_state)
     simulation.explore(find=is_successful, avoid=should_abort)
