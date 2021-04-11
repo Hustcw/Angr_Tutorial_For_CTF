@@ -11,12 +11,12 @@ def main():
     symbolic_file_size_bytes = 64
 
     # create a symbolic memory and set state
-    symbolic_file_backing_memory = angr.state_plugins.SimSymbolicMemory()
-    symbolic_file_backing_memory.set_state(init_state)
+    #symbolic_file_backing_memory = angr.state_plugins.SimSymbolicMemory()
+    #symbolic_file_backing_memory.set_state(init_state)
 
     # store bvs into symbolic memory
     password = init_state.solver.BVS('password', symbolic_file_size_bytes * 8)
-    symbolic_file_backing_memory.store(0, password)
+    #symbolic_file_backing_memory.store(0, password)
 
     # create simulate file, and insert into init_state
     password_file = angr.storage.SimFile(filename, content=password, size=symbolic_file_size_bytes)
