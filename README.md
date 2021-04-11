@@ -7,7 +7,7 @@ I use pypy for running angr in a faster way. Here are my installation instructio
 ```bash
 conda create -n angr # a clean environment
 conda activate angr
-conda install -c conda-forge pypy3.5 
+conda install -c conda-forge pypy3.6
 wget https://bootstrap.pypa.io/get-pip.py
 pypy3 get-pip.py
 pypy3 -m pip install angr # then wait and have a rest
